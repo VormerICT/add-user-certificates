@@ -8,7 +8,7 @@ const et = require('elementtree');
 const networkSecurityFile = path.join('platforms', 'android', 'app', 'src', 'main', 'res', 'xml', 'network_security_config.xml');
 
 try {
-    console.log('Starting Network Security Config update with after_prepare hook...');
+    console.log('Starting Network Security Config update with before_plugin_install hook...');
 
     // Read the existing XML file
     const xml = fs.readFileSync(networkSecurityFile, 'utf-8');
@@ -27,7 +27,7 @@ try {
     // Write the modified XML back to the file
     const updatedXml = etree.write({'indent': 4});
     fs.writeFileSync(networkSecurityFile, updatedXml);
-
+    console.log('Updated networkSecurityFile: '+ networkSecurityFile); 
     console.log('Successfully updated network_security_config.xml with <certificates src="user" />');
 
 } catch (e) {
