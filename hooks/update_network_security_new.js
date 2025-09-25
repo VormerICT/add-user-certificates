@@ -39,4 +39,4 @@ const et = require('elementtree');
         // It's a good practice to exit with an error code if the update fails
         process.exit(1); 
     }
-};
+
