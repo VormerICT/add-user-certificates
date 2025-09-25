@@ -4,15 +4,12 @@ const fs = require('fs');
 const path = require('path');
 const et = require('elementtree');
 
-function isPlatformAndroid(context) {
-    var platform = context.opts.plugin.platform;
-    return platform === 'android';
-}
-function enableUserCertificate(context) {
+
     // Get the path to the network_security_config.xml file
     var networkSecurityFile = path.join('platforms', 'android', 'app', 'src', 'main', 'res', 'xml', 'network_security_config.xml');
-    var projectRoot = context.opts.projectRoot;
-    networkSecurityFile = path.join(projectRoot, 'res', 'android', 'xml', 'network_security_config.xml');
+//    var projectRoot = context.opts.projectRoot;
+//    networkSecurityFile = path.join(projectRoot, 'res', 'android', 'xml', 'network_security_config.xml');
+
     try {
         console.log('Starting Network Security Config update with after_compile hook...');
 
@@ -42,15 +39,4 @@ function enableUserCertificate(context) {
         // It's a good practice to exit with an error code if the update fails
         process.exit(1); 
     }
-}
-
-module.exports = function(context) {
-    return new Promise(function(resolve) {
-
-        if (isPlatformAndroid(context)) {
-            enableUserCertificate(context);
-        }
-
-        return resolve();
-    });
 };
