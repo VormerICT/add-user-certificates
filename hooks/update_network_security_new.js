@@ -11,7 +11,7 @@ const et = require('elementtree');
 //    networkSecurityFile = path.join(projectRoot, 'res', 'android', 'xml', 'network_security_config.xml');
 
     try {
-        console.log('Starting Network Security Config update with after_compile hook...');
+        console.log('Starting Network Security Config update with before_compile hook...');
 
         // Read the existing XML file
         const xml = fs.readFileSync(networkSecurityFile, 'utf-8');
