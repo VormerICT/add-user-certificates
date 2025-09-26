@@ -18,7 +18,7 @@ const et = require('elementtree');
         const etree = et.parse(xml);
 
         // Find the <trustAnchors> element
-        const trustAnchors = etree.find('./trust-anchors');
+        const trustAnchors = etree.find('./base-config/trust-anchors');
         if (trustAnchors) {
             // Create and append the new <certificates> element
             const certificatesElem = et.SubElement(trustAnchors, 'certificates');
