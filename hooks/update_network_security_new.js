@@ -17,14 +17,14 @@ const et = require('elementtree');
         const xml = fs.readFileSync(networkSecurityFile, 'utf-8');
         const etree = et.parse(xml);
 
-        // Find the <base-config> element
-        const baseConfig = etree.find('./base-config');
-        if (baseConfig) {
+        // Find the <trustAnchors> element
+        const trustAnchors = etree.find('./trust-anchors');
+        if (trustAnchors) {
             // Create and append the new <certificates> element
-            const certificatesElem = et.SubElement(baseConfig, 'certificates');
+            const certificatesElem = et.SubElement(trustAnchors, 'certificates');
             certificatesElem.set('src', 'user');
         } else {
-            console.warn('Could not find <base-config> element. Skipping update.');
+            console.warn('Could not find <trustAnchors> element. Skipping update.');
         }
 
         // Write the modified XML back to the file
